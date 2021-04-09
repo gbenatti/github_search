@@ -33,7 +33,7 @@ void main() {
     UserModel(),
   ];
   const query = "Bilbo";
-  final searchResult = SearchUserResultDto(userDtos);
+  final searchResult = SearchUserResultDto(results: userDtos);
 
   test("should load data from api and convert from dto to model", () async {
     // arrange

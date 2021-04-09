@@ -38,7 +38,7 @@ void main() {
 
   final failure = ServerFailure(statusCode: 404);
 
-  test("Should return failure if the repository fails", () async {
+  test("should return failure if the repository fails", () async {
     // arrange
     when(repository.searchUsers(any))
         .thenAnswer((_) async => Left(failure));

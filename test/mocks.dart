@@ -9,10 +9,12 @@ import 'package:retrofit/dio.dart';
 import 'package:dio/dio.dart' show Response;
 
 class MockUserRepository extends Mock implements UserRepository {}
+// ignore: must_be_immutable
 class MockUser extends Mock implements User {}
 
 class MockUserRemoteDataSource extends Mock implements UserRemoteDataSource {}
 class MockNetworkInfo extends Mock implements NetworkInfo {}
+// ignore: must_be_immutable
 class MockUserModel extends Mock implements UserModel {}
 
 class MockGithubApi extends Mock implements GithubApi {}
