@@ -24,16 +24,16 @@ void main() {
   });
 
   final userDtos = [
-    UserDto(),
-    UserDto(),
+    UserDto(id: 1, login: "ana", avatarUrl: "https://avatar/1.jpg", type: "User"),
+    UserDto(id: 2, login: "joe", avatarUrl: "https://avatar/2.jpg", type: "User"),
   ];
 
   final userModels = [
-    UserModel(),
-    UserModel(),
+    UserModel(id: 1, login: "ana", avatarUrl: "https://avatar/1.jpg", type: "User"),
+    UserModel(id: 2, login: "joe", avatarUrl: "https://avatar/2.jpg", type: "User"),
   ];
   const query = "Bilbo";
-  final searchResult = SearchUserResultDto(results: userDtos);
+  final searchResult = SearchUserResultDto(items: userDtos);
 
   test("should load data from api and convert from dto to model", () async {
     // arrange

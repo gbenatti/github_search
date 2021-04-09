@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:github_search/features/user_search/presentation/pages/user_search_page.dart';
+
+import 'dependency_injection.dart';
 
 void main() {
+  init();
   runApp(MyApp());
 }
 
@@ -14,28 +18,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: GithubSearchPage(title: 'Github Search'),
+      home: UserSearchPage(),
     );
   }
 }
 
-class GithubSearchPage extends StatefulWidget {
-  GithubSearchPage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _GithubSearchPageState createState() => _GithubSearchPageState();
-}
-
-class _GithubSearchPageState extends State<GithubSearchPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Container(),
-    );
-  }
-}

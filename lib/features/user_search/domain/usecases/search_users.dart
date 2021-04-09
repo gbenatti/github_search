@@ -6,10 +6,10 @@ import 'package:github_search/core/error/failures.dart';
 import 'package:github_search/features/user_search/domain/entities/user.dart';
 import 'package:github_search/features/user_search/domain/repositories/user_repository.dart';
 
-class SearchUser implements UseCase<List<User>, Params> {
+class SearchUsers implements UseCase<List<User>, Params> {
   final UserRepository repository;
 
-  SearchUser(this.repository);
+  SearchUsers(this.repository);
   
   @override
   Future<Either<Failure, List<User>>> call(params) {

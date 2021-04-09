@@ -2,18 +2,18 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:github_search/core/error/failures.dart';
 import 'package:github_search/features/user_search/domain/repositories/user_repository.dart';
-import 'package:github_search/features/user_search/domain/usecases/search_user.dart';
+import 'package:github_search/features/user_search/domain/usecases/search_users.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../../mocks.dart';
 
 void main() {
   UserRepository repository;
-  SearchUser usecase;
+  SearchUsers usecase;
 
   setUp(() {
     repository = MockUserRepository();
-    usecase = SearchUser(repository);
+    usecase = SearchUsers(repository);
   });
 
   final first = MockUser();

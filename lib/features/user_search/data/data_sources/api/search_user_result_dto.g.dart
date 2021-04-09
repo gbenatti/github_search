@@ -8,7 +8,9 @@ part of 'search_user_result_dto.dart';
 
 SearchUserResultDto _$SearchUserResultDtoFromJson(Map<String, dynamic> json) {
   return SearchUserResultDto(
-    results: (json['results'] as List)
+    totalCount: json['total_count'] as int,
+    incompleteResults: json['imcomplete_results'] as bool,
+    items: (json['items'] as List)
         ?.map((e) =>
             e == null ? null : UserDto.fromJson(e as Map<String, dynamic>))
         ?.toList(),
@@ -18,5 +20,7 @@ SearchUserResultDto _$SearchUserResultDtoFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$SearchUserResultDtoToJson(
         SearchUserResultDto instance) =>
     <String, dynamic>{
-      'results': instance.results,
+      'total_count': instance.totalCount,
+      'imcomplete_results': instance.incompleteResults,
+      'items': instance.items,
     };

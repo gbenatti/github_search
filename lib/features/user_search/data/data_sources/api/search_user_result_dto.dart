@@ -5,9 +5,15 @@ part 'search_user_result_dto.g.dart';
 
 @JsonSerializable()
 class SearchUserResultDto {
-  final List<UserDto> results;
+  @JsonKey(name: "total_count")
+  final int totalCount;
 
-  SearchUserResultDto({this.results});
+  @JsonKey(name: "imcomplete_results")
+  final bool incompleteResults;
+
+  final List<UserDto> items;
+
+  SearchUserResultDto({this.totalCount, this.incompleteResults, this.items});
 
   factory SearchUserResultDto.fromJson(Map<String, dynamic> json) => _$SearchUserResultDtoFromJson(json);
   Map<String, dynamic> toJson() => _$SearchUserResultDtoToJson(this);

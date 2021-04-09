@@ -9,7 +9,7 @@ part of 'github_api.dart';
 class _GithubApi implements GithubApi {
   _GithubApi(this._dio, {this.baseUrl}) {
     ArgumentError.checkNotNull(_dio, '_dio');
-    baseUrl ??= 'https://api.github.com/search/users';
+    baseUrl ??= 'https://api.github.com';
   }
 
   final Dio _dio;
@@ -22,7 +22,7 @@ class _GithubApi implements GithubApi {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'q': query};
     final _data = <String, dynamic>{};
-    final _result = await _dio.request<Map<String, dynamic>>('search/movie',
+    final _result = await _dio.request<Map<String, dynamic>>('/search/users',
         queryParameters: queryParameters,
         options: RequestOptions(
             method: 'GET',

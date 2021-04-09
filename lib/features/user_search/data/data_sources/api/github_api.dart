@@ -6,19 +6,18 @@ import 'search_user_result_dto.dart';
 
 part 'github_api.g.dart';
 
-@RestApi(baseUrl: "https://api.github.com/search/users")
+@RestApi(baseUrl: "https://api.github.com")
 abstract class GithubApi {
   factory GithubApi(Dio dio, {String baseUrl}) = _GithubApi;
 
   factory GithubApi.client({String baseUrl}) {
     final dio = Dio();
-    dio.options.headers["Content-Type"] = "application/json";
-    dio.options.headers["Accept"] = "application/vnd.github.v3+json";
+    dio.options.headers["Accept"] = "application/vnd.github.v3.text-match+json";
 
     return GithubApi(dio, baseUrl: baseUrl);
   }
 
-  @GET("search/movie")
+  @GET("/search/users")
   Future<HttpResponse<SearchUserResultDto>> searchUser(@Query("q") String query);
 }
 
