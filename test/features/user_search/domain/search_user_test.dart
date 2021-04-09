@@ -24,7 +24,7 @@ void main() {
 
   test("should get list of users from repository", () async {
     // arrange
-    when(repository.searchUser(any))
+    when(repository.searchUsers(any))
         .thenAnswer((_) async => Right(userList));
 
     // act
@@ -32,7 +32,7 @@ void main() {
 
     // assert
     expect(result, Right(userList));
-    verify(repository.searchUser(username));
+    verify(repository.searchUsers(username));
     verifyNoMoreInteractions(repository);
   });
 
@@ -40,7 +40,7 @@ void main() {
 
   test("Should return failure if the repository fails", () async {
     // arrange
-    when(repository.searchUser(any))
+    when(repository.searchUsers(any))
         .thenAnswer((_) async => Left(failure));
 
     // act
@@ -48,8 +48,7 @@ void main() {
 
     // assert
     expect(result, Left(failure));
-    verify(repository.searchUser(username));
+    verify(repository.searchUsers(username));
     verifyNoMoreInteractions(repository);
-
   });
 }

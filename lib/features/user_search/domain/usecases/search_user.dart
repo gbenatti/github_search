@@ -13,7 +13,7 @@ class SearchUser implements UseCase<List<User>, Params> {
   
   @override
   Future<Either<Failure, List<User>>> call(params) {
-    return repository.searchUser(params.query);
+    return repository.searchUsers(params.query);
   }
 }
 

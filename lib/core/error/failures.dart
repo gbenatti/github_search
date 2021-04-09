@@ -16,3 +16,5 @@ class ServerFailure extends Failure {
   @override
   List<Object> get props => [statusCode];
 }
+
+class NoConnectionFailure extends Failure { }
