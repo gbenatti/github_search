@@ -13,12 +13,16 @@ class UserDto {
   @JsonKey(name: "avatar_url")
   final String avatarUrl;
   
+  @JsonKey(name: "html_url")
+  final String htmlUrl;
+
   final String type;
 
   UserDto({
     @required this.id,
     @required this.login,
     @required this.avatarUrl,
+    @required this.htmlUrl,
     @required this.type,
   });
 
@@ -31,6 +35,7 @@ class UserDto {
       id: id,
       login: login,
       avatarUrl: avatarUrl,
+      htmlUrl: htmlUrl,
       type: type,
     );
   }

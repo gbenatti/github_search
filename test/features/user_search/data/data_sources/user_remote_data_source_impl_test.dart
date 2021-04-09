@@ -24,13 +24,13 @@ void main() {
   });
 
   final userDtos = [
-    UserDto(id: 1, login: "ana", avatarUrl: "https://avatar/1.jpg", type: "User"),
-    UserDto(id: 2, login: "joe", avatarUrl: "https://avatar/2.jpg", type: "User"),
+    UserDto(id: 1, login: "ana", avatarUrl: "https://avatar/1.jpg", htmlUrl: "https://html/1.html", type: "User"),
+    UserDto(id: 2, login: "joe", avatarUrl: "https://avatar/2.jpg", htmlUrl: "https://html/2.html", type: "User"),
   ];
 
   final userModels = [
-    UserModel(id: 1, login: "ana", avatarUrl: "https://avatar/1.jpg", type: "User"),
-    UserModel(id: 2, login: "joe", avatarUrl: "https://avatar/2.jpg", type: "User"),
+    UserModel(id: 1, login: "ana", avatarUrl: "https://avatar/1.jpg", htmlUrl: "https://html/1.html", type: "User"),
+    UserModel(id: 2, login: "joe", avatarUrl: "https://avatar/2.jpg", htmlUrl: "https://html/2.html", type: "User"),
   ];
   const query = "Bilbo";
   final searchResult = SearchUserResultDto(items: userDtos);

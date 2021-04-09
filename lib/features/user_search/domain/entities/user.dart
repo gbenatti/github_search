@@ -5,12 +5,14 @@ class User extends Equatable {
   final int id;
   final String login;
   final String avatarUrl;
+  final String htmlUrl;
   final String type;
 
   User({
     @required this.id,
     @required this.login,
     @required this.avatarUrl,
+    @required this.htmlUrl,
     @required this.type,
   });
 
@@ -19,6 +21,7 @@ class User extends Equatable {
         id,
         login,
         avatarUrl,
+        htmlUrl,
         type,
       ];
 }

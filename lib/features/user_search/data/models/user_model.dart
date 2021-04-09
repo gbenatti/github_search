@@ -6,10 +6,12 @@ class UserModel extends User {
     @required int id,
     @required String login,
     @required String avatarUrl,
+    @required String htmlUrl,
     @required String type,
   }) : super(
           id: id,
           login: login,
+          htmlUrl: htmlUrl,
           avatarUrl: avatarUrl,
           type: type,
         );

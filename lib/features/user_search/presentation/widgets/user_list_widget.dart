@@ -19,8 +19,8 @@ class UserListWidget extends StatelessWidget {
       itemCount: users.length,
       itemBuilder: (context, index) => Padding(
         padding: const EdgeInsets.symmetric(
-          vertical: 12.0,
-          horizontal: 8.0,
+          vertical: 4.0,
+          horizontal: 4.0,
         ),
         child: UserCard(
           user: users[index],
