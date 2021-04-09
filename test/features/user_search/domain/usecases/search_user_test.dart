@@ -5,7 +5,7 @@ import 'package:github_search/features/user_search/domain/repositories/user_repo
 import 'package:github_search/features/user_search/domain/usecases/search_user.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../../mocks.dart';
+import '../../../../mocks.dart';
 
 void main() {
   UserRepository repository;
