@@ -27,4 +27,9 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
       throw ServerException();
     }
   }
+
+  @override
+  Future<UserModel> getUserDetails(String login) {
+    return null;
+  }
 }

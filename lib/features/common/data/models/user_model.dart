@@ -8,11 +8,34 @@ class UserModel extends User {
     @required String avatarUrl,
     @required String htmlUrl,
     @required String type,
+    String name,
+    String company,
+    String location,
+    String bio,
+    String email,
   }) : super(
           id: id,
           login: login,
           htmlUrl: htmlUrl,
           avatarUrl: avatarUrl,
           type: type,
+          name: name,
+          company: company,
+          location: location,
+          bio: bio,
+          email: email,
         );
+
+  User toUser() => User(
+        id: this.id,
+        login: this.login,
+        htmlUrl: this.htmlUrl,
+        avatarUrl: this.avatarUrl,
+        type: this.type,
+        name: this.name,
+        company: this.company,
+        location: this.location,
+        bio: this.bio,
+        email: this.email,
+      );
 }

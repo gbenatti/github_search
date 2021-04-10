@@ -28,7 +28,17 @@ class UserRepositoryImpl implements UserRepository{
   }
 
   @override
-  Future<Either<Failure, User>> getUserDetails(String login) {
-    return null;
+  Future<Either<Failure, User>> getUserDetails(String login) async {
+    final connected = await networkInfo.isConnected;
+    if (connected) {
+      try {
+        final result = await remoteDataSource.getUserDetails(login);
+        return Right(result.toUser());
+      } on ServerException catch (e) {
+        return Left(ServerFailure(statusCode: e.statusCode));
+      }
+    } else {
+      return Left(NoConnectionFailure());
+    }
   }
 }
