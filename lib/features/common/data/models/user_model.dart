@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:github_search/features/user_search/domain/entities/user.dart';
+import 'package:github_search/features/common/domain/entities/user.dart';
 
 class UserModel extends User {
   UserModel({

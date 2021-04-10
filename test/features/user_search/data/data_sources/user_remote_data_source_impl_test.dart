@@ -1,11 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:github_search/core/error/exceptions.dart';
-import 'package:github_search/features/user_search/data/data_sources/api/github_api.dart';
-import 'package:github_search/features/user_search/data/data_sources/api/search_user_result_dto.dart';
-import 'package:github_search/features/user_search/data/data_sources/api/user_dto.dart';
-import 'package:github_search/features/user_search/data/data_sources/api/user_remote_data_source_impl.dart';
-import 'package:github_search/features/user_search/data/data_sources/user_remote_data_source.dart';
-import 'package:github_search/features/user_search/data/models/user_model.dart';
+import 'package:github_search/features/common/data/data_sources/api/github_api.dart';
+import 'package:github_search/features/common/data/data_sources/api/search_user_result_dto.dart';
+import 'package:github_search/features/common/data/data_sources/api/user_dto.dart';
+import 'package:github_search/features/common/data/data_sources/api/user_remote_data_source_impl.dart';
+import 'package:github_search/features/common/data/data_sources/user_remote_data_source.dart';
+import 'package:github_search/features/common/data/models/user_model.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../../mocks.dart';

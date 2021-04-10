@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:github_search/features/user_search/data/models/user_model.dart';
+import 'package:github_search/features/common/data/models/user_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user_dto.g.dart';

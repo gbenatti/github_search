@@ -1,6 +1,6 @@
 import 'package:github_search/core/error/exceptions.dart';
-import 'package:github_search/features/user_search/data/data_sources/user_remote_data_source.dart';
-import 'package:github_search/features/user_search/data/models/user_model.dart';
+import 'package:github_search/features/common/data/data_sources/user_remote_data_source.dart';
+import 'package:github_search/features/common/data/models/user_model.dart';
 
 import 'package:dio/dio.dart';
 import 'github_api.dart';

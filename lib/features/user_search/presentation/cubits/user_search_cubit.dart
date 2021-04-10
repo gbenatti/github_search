@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:github_search/core/error/failures.dart';
-import 'package:github_search/features/user_search/domain/entities/user.dart';
+import 'package:github_search/features/common/domain/entities/user.dart';
 import 'package:github_search/features/user_search/domain/usecases/search_users.dart';
 
 part 'user_search_state.dart';

@@ -1,4 +1,4 @@
-import 'package:github_search/features/user_search/data/data_sources/api/user_dto.dart';
+import 'package:github_search/features/common/data/data_sources/api/user_dto.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'search_user_result_dto.g.dart';
