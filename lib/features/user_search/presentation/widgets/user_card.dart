@@ -59,7 +59,10 @@ class UserAvatar extends StatelessWidget {
     return Container(
       width: 80,
       height: 80,
-      child: Image.network(user.avatarUrl),
+      child: Hero(
+        tag: user.avatarUrl,
+        child: Image.network(user.avatarUrl),
+      ),
     );
   }
 }
