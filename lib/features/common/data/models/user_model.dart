@@ -28,14 +28,14 @@ class UserModel extends User {
 
   User toUser() => User(
         id: this.id,
-        login: this.login,
+        login: this.login ?? "",
         htmlUrl: this.htmlUrl,
         avatarUrl: this.avatarUrl,
-        type: this.type,
-        name: this.name,
-        company: this.company,
-        location: this.location,
-        bio: this.bio,
-        email: this.email,
+        type: this.type ?? "",
+        name: this.name ?? "",
+        company: this.company ?? "",
+        location: this.location ?? "",
+        bio: this.bio ?? "",
+        email: this.email ?? "",
       );
 }

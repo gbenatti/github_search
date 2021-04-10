@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:github_search/dependency_injection.dart';
 import 'package:github_search/features/user_detail/presentation/cubits/user_detail_cubit.dart';
 import 'package:github_search/features/common/presentation/widgets/loading_widget.dart';
+import 'package:github_search/features/user_detail/presentation/widgets/user_detail_view.dart';
 
 class UserDetailPage extends StatelessWidget {
   const UserDetailPage({
@@ -10,10 +11,10 @@ class UserDetailPage extends StatelessWidget {
     @required this.username,
   }) : super(key: key);
 
+  final String username;
+
   static Route route(String username) => MaterialPageRoute(
       builder: (context) => UserDetailPage(username: username));
-
-  final String username;
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +59,8 @@ class _UserDetailPage extends StatelessWidget {
   Widget _buildContent(UserDetailState state) {
     if (state is UserDetailLoading) {
       return LoadingWidget();
+    } else if (state is UserDetailLoaded) {
+      return UserDetailView(user: state.user);
     }
 
     return Container();
