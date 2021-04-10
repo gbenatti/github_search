@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:github_search/dependency_injection.dart';
+import 'package:github_search/features/user_detail/presentation/cubits/user_detail_cubit.dart';
 
 class UserDetailPage extends StatelessWidget {
   const UserDetailPage({
@@ -13,7 +16,10 @@ class UserDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _UserDetailPage(username: username);
+    return BlocProvider(
+      create: (_) => sl<UserDetailCubit>(),
+      child: _UserDetailPage(username: username),
+    );
   }
 }
 
@@ -35,5 +41,20 @@ class _UserDetailPage extends StatelessWidget {
     );
   }
 
-  Container _buildBody() => Container();
+  Widget _buildBody() {
+    return BlocConsumer<UserDetailCubit, UserDetailState>(
+      listener: (context, state) => _handlePossibleError(state, context),
+      builder: (context, state) => _buildContent(state),
+    );
+  }
+
+  void _handlePossibleError(UserDetailState state, BuildContext context) {
+    if (state is UserDetailLoadError) {
+      Scaffold.of(context).showSnackBar(SnackBar(content: Text(state.message)));
+    }
+  }
+
+  Widget _buildContent(UserDetailState state) {
+    return Container();
+  }
 }
