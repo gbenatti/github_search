@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_search_bar/flutter_search_bar.dart';
 import 'package:github_search/dependency_injection.dart';
+import 'package:github_search/features/user_detail/presentation/pages/user_detail_page.dart';
 import 'package:github_search/features/user_search/presentation/cubits/user_search_cubit.dart';
 import 'package:github_search/features/user_search/presentation/widgets/display_message.dart';
 import 'package:github_search/features/user_search/presentation/widgets/loading_widget.dart';
@@ -86,7 +87,10 @@ class _UserSearchPageState extends State<_UserSearchPage> {
     } else if (state is UserSearchDone) {
       return UserListWidget(
         users: state.users,
-        onDetails: (user) => {}
+        onDetails: (user) => Navigator.push(
+          context,
+          UserDetailPage.route(user.login),
+        ),
       );
     }
 

@@ -6,11 +6,13 @@ import 'user_card.dart';
 class UserListWidget extends StatelessWidget {
   final List<User> users;
   final Function(User) onDetails;
+  final Function(User) onFavorite;
 
   const UserListWidget({
     Key key,
     this.users,
     this.onDetails,
+    this.onFavorite,
   }) : super(key: key);
 
   @override
@@ -24,7 +26,8 @@ class UserListWidget extends StatelessWidget {
         ),
         child: UserCard(
           user: users[index],
-          onDetails: onDetails != null ? () => onDetails(users[index]) : null,
+          onDetails: onDetails != null ?  () => onDetails(users[index]) : null,
+          onFavorite: onFavorite != null ? () => onFavorite(users[index]) : null,
         ),
       ),
     );

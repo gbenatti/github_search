@@ -6,34 +6,41 @@ class UserCard extends StatelessWidget {
     Key key,
     @required this.user,
     @required this.onDetails,
+    @required this.onFavorite,
   }) : super(key: key);
 
   final User user;
   final void Function() onDetails;
+  final void Function() onFavorite;
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Column(
-            children: [
-              Row(
-                children: [
-                  UserAvatar(user: user),
-                  SizedBox(
-                    width: 16,
-                  ),
-                  UserInfo(user: user),
-                ],
-              ),
-            ],
-          ),
-          IconButton(
-              icon: Icon(Icons.favorite_border_rounded), onPressed: () {}),
-        ],
+      child: InkWell(
+        onTap: onDetails,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Column(
+              children: [
+                Row(
+                  children: [
+                    UserAvatar(user: user),
+                    SizedBox(
+                      width: 16,
+                    ),
+                    UserInfo(user: user),
+                  ],
+                ),
+              ],
+            ),
+            IconButton(
+              icon: Icon(Icons.favorite_border_rounded),
+              onPressed: () {},
+            ),
+          ],
+        ),
       ),
     );
   }
