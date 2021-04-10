@@ -9,7 +9,7 @@ import 'package:github_search/features/common/data/repositories/user_repository_
 import 'package:github_search/features/common/domain/repositories/user_repository.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../../../mocks.dart';
+import '../../../mocks.dart';
 
 void main() {
   UserRemoteDataSource remoteDataSource;

@@ -8,7 +8,7 @@ import 'package:github_search/features/common/data/data_sources/user_remote_data
 import 'package:github_search/features/common/data/models/user_model.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../../../mocks.dart';
+import '../../../mocks.dart';
 
 void main() {
   GithubApi api;
