@@ -7,16 +7,22 @@ part 'user_dto.g.dart';
 @JsonSerializable()
 class UserDto {
   final int id;
-  
+
   final String login;
 
   @JsonKey(name: "avatar_url")
   final String avatarUrl;
-  
+
   @JsonKey(name: "html_url")
   final String htmlUrl;
 
   final String type;
+
+  final String name;
+  final String company;
+  final String location;
+  final String bio;
+  final String email;
 
   UserDto({
     @required this.id,
@@ -24,6 +30,11 @@ class UserDto {
     @required this.avatarUrl,
     @required this.htmlUrl,
     @required this.type,
+    this.name,
+    this.company,
+    this.location,
+    this.bio,
+    this.email,
   });
 
   factory UserDto.fromJson(Map<String, dynamic> json) =>
@@ -37,6 +48,11 @@ class UserDto {
       avatarUrl: avatarUrl,
       htmlUrl: htmlUrl,
       type: type,
+      name: name,
+      company: company,
+      location: location,
+      bio: bio,
+      email: email,
     );
   }
 }

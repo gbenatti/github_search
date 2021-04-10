@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart' show Dio, RequestOptions;
+import 'package:github_search/features/common/data/data_sources/api/user_dto.dart';
 import 'package:retrofit/dio.dart' show HttpResponse;
-import 'package:retrofit/http.dart' show GET, Query, RestApi;
+import 'package:retrofit/http.dart' show GET, Query, Path, RestApi;
 
 import 'search_user_result_dto.dart';
 
@@ -19,5 +20,8 @@ abstract class GithubApi {
 
   @GET("/search/users")
   Future<HttpResponse<SearchUserResultDto>> searchUser(@Query("q") String query);
+
+  @GET("/users/{username}")
+  Future<HttpResponse<UserDto>> getUser(@Path("username") String username);
 }
 

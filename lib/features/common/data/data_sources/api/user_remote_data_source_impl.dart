@@ -13,15 +13,8 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   @override
   Future<List<UserModel>> searchUsers(String query) async {
     try {
-      final result = await api.searchUser(query);
-      final statusCode = result.response.statusCode;
-
-      if (statusCode >= 200 && statusCode < 300) {
-        return result.data.items.map((e) => e.toModel()).toList();
-      } else {
-        throw ServerException(statusCode: statusCode);
-      }
-    } on DioError catch(e){
+      return await _searchUsers(query);
+    } on DioError catch (e) {
       throw ServerException(statusCode: e.response?.statusCode);
     } on Exception {
       throw ServerException();
@@ -29,7 +22,34 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   }
 
   @override
-  Future<UserModel> getUserDetails(String login) {
-    return null;
+  Future<UserModel> getUserDetails(String login) async {
+    try {
+      return await _getUserDetails(login);
+    } on DioError catch (e) {
+      throw ServerException(statusCode: e.response?.statusCode);
+    } on Exception {
+      throw ServerException();
+    }
+  }
+
+  Future<List<UserModel>> _searchUsers(String query) async {
+    final result = await api.searchUser(query);
+    final statusCode = result.response.statusCode;
+
+    if (statusCode >= 200 && statusCode < 300) {
+      return result.data.items.map((e) => e.toModel()).toList();
+    } else {
+      throw ServerException(statusCode: statusCode);
+    }
+  }
+
+  Future<UserModel> _getUserDetails(String login) async {
+    final result = await api.getUser(login);
+    final statusCode = result.response.statusCode;
+    if (statusCode >= 200 && statusCode < 300) {
+      return result.data.toModel();
+    } else {
+      throw ServerException(statusCode: statusCode);
+    }
   }
 }
