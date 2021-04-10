@@ -16,12 +16,12 @@ class UserSearchCubit extends Cubit<UserSearchState> {
     emit(UserSearching());
     final result = await searchUsers(Params(query: username));
     result.fold(
-      (l) => emit(UserSearchError(message: errorMessage(l))),
-      (r) => emit(UserSearchDone(users: r)),
+      (failure) => emit(UserSearchError(message: _errorMessage(failure))),
+      (users) => emit(UserSearchDone(users: users)),
     );
   }
 
-  String errorMessage(Failure failure) {
+  String _errorMessage(Failure failure) {
     return "Falha na busca";
   }
 }
