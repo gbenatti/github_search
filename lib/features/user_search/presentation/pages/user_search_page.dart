@@ -4,8 +4,8 @@ import 'package:flutter_search_bar/flutter_search_bar.dart';
 import 'package:github_search/dependency_injection.dart';
 import 'package:github_search/features/user_detail/presentation/pages/user_detail_page.dart';
 import 'package:github_search/features/user_search/presentation/cubits/user_search_cubit.dart';
-import 'package:github_search/features/user_search/presentation/widgets/display_message.dart';
-import 'package:github_search/features/user_search/presentation/widgets/loading_widget.dart';
+import 'package:github_search/features/common/presentation/widgets/display_message.dart';
+import 'package:github_search/features/common/presentation/widgets/loading_widget.dart';
 import 'package:github_search/features/user_search/presentation/widgets/user_list_widget.dart';
 
 class UserSearchPage extends StatelessWidget {
