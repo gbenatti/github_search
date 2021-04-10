@@ -7,6 +7,11 @@ class User extends Equatable {
   final String avatarUrl;
   final String htmlUrl;
   final String type;
+  final String name;
+  final String company;
+  final String location;
+  final String bio;
+  final String email;
 
   User({
     @required this.id,
@@ -14,6 +19,11 @@ class User extends Equatable {
     @required this.avatarUrl,
     @required this.htmlUrl,
     @required this.type,
+    this.name,
+    this.company,
+    this.location,
+    this.bio,
+    this.email,
   });
 
   @override
@@ -23,5 +33,10 @@ class User extends Equatable {
         avatarUrl,
         htmlUrl,
         type,
+        name,
+        company,
+        location,
+        bio,
+        email,
       ];
 }

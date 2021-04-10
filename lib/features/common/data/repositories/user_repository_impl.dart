@@ -26,4 +26,9 @@ class UserRepositoryImpl implements UserRepository{
       return Left(NoConnectionFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, User>> getUserDetails(String login) {
+    return null;
+  }
 }
