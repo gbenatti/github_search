@@ -17,7 +17,7 @@ class UserDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => sl<UserDetailCubit>(),
+      create: (_) => sl<UserDetailCubit>()..getDetails(username),
       child: _UserDetailPage(username: username),
     );
   }

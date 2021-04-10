@@ -6,6 +6,8 @@ import 'package:github_search/features/common/data/data_sources/api/user_remote_
 import 'package:github_search/features/common/data/data_sources/user_remote_data_source.dart';
 import 'package:github_search/features/common/data/repositories/user_repository_impl.dart';
 import 'package:github_search/features/common/domain/repositories/user_repository.dart';
+import 'package:github_search/features/user_detail/domain/usecases/get_user_detail.dart';
+import 'package:github_search/features/user_detail/presentation/cubits/user_detail_cubit.dart';
 import 'package:github_search/features/user_search/domain/usecases/search_users.dart';
 import 'package:github_search/features/user_search/presentation/cubits/user_search_cubit.dart';
 
@@ -16,9 +18,11 @@ void init() {
 
   // Cubits
   sl.registerFactory(() => UserSearchCubit(searchUsers: sl()));
+  sl.registerFactory(() => UserDetailCubit(getUserDetails: sl()));
 
   // Use cases
   sl.registerLazySingleton(() => SearchUsers(sl()));
+  sl.registerLazySingleton(() => GetUserDetails(sl()));
 
   // Repositories
   sl.registerLazySingleton<UserRepository>(
