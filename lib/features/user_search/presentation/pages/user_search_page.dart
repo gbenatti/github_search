@@ -29,6 +29,7 @@ class _UserSearchPage extends StatefulWidget {
 
 class _UserSearchPageState extends State<_UserSearchPage> {
   SearchBar searchBar;
+  bool showingFavorites = false;
 
   @override
   void initState() {
@@ -50,9 +51,27 @@ class _UserSearchPageState extends State<_UserSearchPage> {
     return AppBar(
       title: const Text("Github users"),
       actions: [
-        searchBar.getSearchAction(context),
+        if (!showingFavorites)
+          searchBarAction(),
+        favoriteFilterAction(),
       ],
     );
+  }
+
+  Widget searchBarAction() {
+    return searchBar.getSearchAction(context);
+  }
+
+  Widget favoriteFilterAction() {
+    return IconButton(
+        icon: Icon(showingFavorites ? Icons.favorite : Icons.favorite_outline),
+        onPressed: toggleFavorites);
+  }
+
+  void toggleFavorites() {
+    setState(() {
+      showingFavorites = !showingFavorites;
+    });
   }
 
   @override
@@ -79,6 +98,10 @@ class _UserSearchPageState extends State<_UserSearchPage> {
   Widget _buildContent(UserSearchState state) {
     if (state is UserSearchEmpty) {
       return const DisplayMessage(
+        icon: Icon(
+          Icons.search,
+          size: 64,
+        ),
         message: "Nenhum resultado",
         description: "Tente fazer uma busca.",
       );
