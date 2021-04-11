@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_search_bar/flutter_search_bar.dart';
 import 'package:github_search/dependency_injection.dart';
 import 'package:github_search/features/user_detail/presentation/pages/user_detail_page.dart';
+import 'package:github_search/features/user_search/presentation/cubits/favorites_cubit.dart';
 import 'package:github_search/features/user_search/presentation/cubits/user_search_cubit.dart';
 import 'package:github_search/features/common/presentation/widgets/display_message.dart';
 import 'package:github_search/features/common/presentation/widgets/loading_widget.dart';
@@ -13,8 +14,15 @@ class UserSearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => sl<UserSearchCubit>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<UserSearchCubit>(
+          create: (_) => sl<UserSearchCubit>(),
+        ),
+        BlocProvider<FavoritesCubit>(
+          create: (_) => sl<FavoritesCubit>(),
+        ),
+      ],
       child: const _UserSearchPage(),
     );
   }
@@ -51,8 +59,7 @@ class _UserSearchPageState extends State<_UserSearchPage> {
     return AppBar(
       title: const Text("Github users"),
       actions: [
-        if (!showingFavorites)
-          searchBarAction(),
+        if (!showingFavorites) searchBarAction(),
         favoriteFilterAction(),
       ],
     );
