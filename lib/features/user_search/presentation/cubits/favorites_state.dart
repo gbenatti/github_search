@@ -8,3 +8,11 @@ abstract class FavoritesState extends Equatable {
 }
 
 class FavoritesInitial extends FavoritesState {}
+class FavoritesLoading extends FavoritesState {}
+class FavoritesLoaded extends FavoritesState {
+  final List<Favorite> favorites;
+
+  FavoritesLoaded({this.favorites});
+}
+
+class FavoritesLoadError extends FavoritesState {}

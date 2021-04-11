@@ -15,7 +15,7 @@ import 'package:github_search/features/user_search/presentation/cubits/user_sear
 final sl = GetIt.instance;
 
 void init() {
-  // Features - MovieList
+  // Features
 
   // Cubits
   sl.registerFactory(() => UserSearchCubit(searchUsers: sl()));

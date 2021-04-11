@@ -18,3 +18,5 @@ class ServerFailure extends Failure {
 }
 
 class NoConnectionFailure extends Failure { }
+
+class LoadFailure extends Failure {}
