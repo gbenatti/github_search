@@ -11,6 +11,6 @@ class LoadFavorites implements UseCase<List<Favorite>, NoParams>{
   
   @override
   Future<Either<Failure, List<Favorite>>> call(NoParams params) {
-    throw UnimplementedError();
+    return repository.loadFavorites();
   }
  }

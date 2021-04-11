@@ -3,3 +3,5 @@ class ServerException implements Exception {
 
   ServerException({this.statusCode});
 }
+
+class LoadException implements Exception { }
