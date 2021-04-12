@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:github_search/core/error/exceptions.dart';
 import 'package:github_search/features/common/data/data_sources/api/user_dto.dart';
 import 'package:github_search/features/common/data/models/user_model.dart';
 import 'package:path/path.dart' as p;
@@ -15,7 +14,7 @@ class FavoriteLocalDataSourceImpl implements FavoriteLocalDataSource {
       final favorites = _parseFavorites(jsonString);
       return favorites.map((fav) => fav.toModel());
     } on Exception {
-      throw LoadException();
+      return <UserModel>[];
     }
   }
 
@@ -32,13 +31,22 @@ class FavoriteLocalDataSourceImpl implements FavoriteLocalDataSource {
   }
 
   @override
-  Future<List<UserModel>> addFavorite(UserModel user) {
-    throw UpdateFavoriteException();
+  Future<List<UserModel>> addFavorite(UserModel user) async {
+    final favorites = await loadFavorites();
+    if (!favorites.contains(user)) {
+      favorites.add(user);
+      await _saveFavorites(favorites);
+    }
+    return favorites;
   }
 
   @override
-  Future<List<UserModel>> removeFavorite(UserModel user) {
-    throw UpdateFavoriteException();
+  Future<List<UserModel>> removeFavorite(UserModel user) async {
+    final favorites = await loadFavorites();
+    if (favorites.contains(user)) {
+      favorites.remove(user);
+    }
+    return favorites;
   }
 
   Future<void> _saveFavorites(List<UserModel> favorites) async {
@@ -47,13 +55,13 @@ class FavoriteLocalDataSourceImpl implements FavoriteLocalDataSource {
     await _saveJson(jsonString);
   }
 
+  String _serializeFavorites(List<UserDto> favorites) {
+    return jsonEncode(favorites);
+  }
+
   Future<void> _saveJson(String jsonString) async {
     final filePath = await _getFavoritesFilePath();
     await File(filePath).writeAsString(jsonString);
-  }
-
-  String _serializeFavorites(List<UserDto> favorites) {
-    return jsonEncode(favorites);
   }
 
   Future<String> _getFavoritesFilePath() async {
