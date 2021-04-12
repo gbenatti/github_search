@@ -19,7 +19,7 @@ void main() {
     expect(cubit.state, FavoritesInitial());
   });
 
-  final favorites = [MockFavorite(), MockFavorite(),];
+  final favorites = [MockUser(), MockUser(),];
 
   group("-", () {
     blocTest<FavoritesCubit, FavoritesState>(

@@ -93,34 +93,33 @@ void main() {
   });
 
   group("get user details", () {
+    final login = "sholmes";
 
-      final login = "sholmes";
+    final userModel = UserModel(
+      id: 1,
+      login: login,
+      type: "User",
+      avatarUrl: "http://holmes.jpeg",
+      htmlUrl: "http://htmls/holmes.html",
+      name: "Sherlock Holmes",
+      location: "londres",
+      bio: "The greatest detective in the world",
+      company: "Holmes & Watson",
+      email: "sholmes@holmes.com",
+    );
 
-      final userModel = UserModel(
-        id: 1,
-        login: login,
-        type: "User",
-        avatarUrl: "http://holmes.jpeg",
-        htmlUrl: "http://htmls/holmes.html",
-        name: "Sherlock Holmes",
-        location: "londres",
-        bio: "The greatest detective in the world",
-        company: "Holmes & Watson",
-        email: "sholmes@holmes.com",
-      );
-
-      final user = User(
-        id: 1,
-        login: login,
-        type: "User",
-        avatarUrl: "http://holmes.jpeg",
-        htmlUrl: "http://htmls/holmes.html",
-        name: "Sherlock Holmes",
-        location: "londres",
-        bio: "The greatest detective in the world",
-        company: "Holmes & Watson",
-        email: "sholmes@holmes.com",
-      );
+    final user = User(
+      id: 1,
+      login: login,
+      type: "User",
+      avatarUrl: "http://holmes.jpeg",
+      htmlUrl: "http://htmls/holmes.html",
+      name: "Sherlock Holmes",
+      location: "londres",
+      bio: "The greatest detective in the world",
+      company: "Holmes & Watson",
+      email: "sholmes@holmes.com",
+    );
 
     group("when connection is on", () {
       setUp(() {
@@ -144,19 +143,20 @@ void main() {
       test(
           "should return ServerFailure when data source throws a ServerException",
           () async {
-            // arrange
-            when(remoteDataSource.getUserDetails(any)).thenThrow(ServerException(statusCode: 404));
+        // arrange
+        when(remoteDataSource.getUserDetails(any))
+            .thenThrow(ServerException(statusCode: 404));
 
-            // act
-            final result = await repository.getUserDetails(login);
+        // act
+        final result = await repository.getUserDetails(login);
 
-            // assert
-            expect(result, Left(ServerFailure(statusCode: 404)));
-            verify(networkInfo.isConnected);
-            verify(remoteDataSource.getUserDetails(login));
-            verifyNoMoreInteractions(networkInfo);
-            verifyNoMoreInteractions(remoteDataSource);
-          });
+        // assert
+        expect(result, Left(ServerFailure(statusCode: 404)));
+        verify(networkInfo.isConnected);
+        verify(remoteDataSource.getUserDetails(login));
+        verifyNoMoreInteractions(networkInfo);
+        verifyNoMoreInteractions(remoteDataSource);
+      });
     });
 
     group("when connection is off", () {

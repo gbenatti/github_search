@@ -17,6 +17,8 @@ class ServerFailure extends Failure {
   List<Object> get props => [statusCode];
 }
 
-class NoConnectionFailure extends Failure { }
+class NoConnectionFailure extends Failure {}
 
 class LoadFailure extends Failure {}
+
+class UpdateFavoriteFailure extends Failure {}

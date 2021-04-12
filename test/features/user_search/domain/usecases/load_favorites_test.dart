@@ -17,9 +17,9 @@ void main() {
     usecase = LoadFavorites(repository);
   });
 
-  final first = MockFavorite();
-  final second = MockFavorite();
-  final third = MockFavorite();
+  final first = MockUser();
+  final second = MockUser();
+  final third = MockUser();
   final favoriteList = [first, second, third];
 
   test("should get list of favorites from repository", () async {

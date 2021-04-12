@@ -33,6 +33,9 @@ dependencies:
   # ui 
   flutter_search_bar: ^2.1.0
   font_awesome_flutter: ^8.0.0
+
+  # io
+  path_provider: ^1.6.28
   
 dev_dependencies:
   flutter_test:

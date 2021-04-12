@@ -41,6 +41,21 @@ class UserDto {
       _$UserDtoFromJson(json);
   Map<String, dynamic> toJson() => _$UserDtoToJson(this);
 
+  factory UserDto.fromModel(UserModel model) {
+    return UserDto(
+      id: model.id,
+      login: model.login,
+      avatarUrl: model.avatarUrl,
+      htmlUrl: model.htmlUrl,
+      type: model.type,
+      name: model.name,
+      company: model.company,
+      location: model.location,
+      bio: model.bio,
+      email: model.email,
+    );
+  }
+
   UserModel toModel() {
     return UserModel(
       id: id,

@@ -5,3 +5,5 @@ class ServerException implements Exception {
 }
 
 class LoadException implements Exception { }
+
+class UpdateFavoriteException implements Exception { }
