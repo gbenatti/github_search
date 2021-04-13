@@ -20,7 +20,7 @@ class UserSearchPage extends StatelessWidget {
           create: (_) => sl<UserSearchCubit>(),
         ),
         BlocProvider<FavoritesCubit>(
-          create: (_) => sl<FavoritesCubit>(),
+          create: (_) => sl<FavoritesCubit>()..load(),
         ),
       ],
       child: const _UserSearchPage(),
@@ -180,8 +180,14 @@ class _UserSearchPageState extends State<_UserSearchPage> {
       } else {
         return UserListWidget(
           users: state.favorites,
-          onDetails: (user) {},
-          onFavorite: (user, value) {},
+          onFavorite: (user, value) {
+            final favoritesCubit = context.read<FavoritesCubit>();
+            favoritesCubit.updateFavorite(user, value);
+          },
+          onDetails: (user) => Navigator.push(
+            context,
+            UserDetailPage.route(user.login),
+          ),
         );
       }
     }

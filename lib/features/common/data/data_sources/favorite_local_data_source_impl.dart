@@ -44,6 +44,7 @@ class FavoriteLocalDataSourceImpl implements FavoriteLocalDataSource {
     final favorites = await loadFavorites();
     if (favorites.contains(user)) {
       favorites.remove(user);
+      await _saveFavorites(favorites);
     }
     return favorites;
   }

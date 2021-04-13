@@ -38,7 +38,10 @@ class UserCard extends StatelessWidget {
               ],
             ),
             IconButton(
-              icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border_rounded),
+              icon: Icon(
+                isFavorite ? Icons.favorite : Icons.favorite_border_rounded,
+                color: isFavorite ? Colors.red : Colors.black,
+              ),
               onPressed: () => onFavorite(user, !isFavorite),
             ),
           ],
