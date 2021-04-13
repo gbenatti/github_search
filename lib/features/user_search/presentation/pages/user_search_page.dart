@@ -51,8 +51,8 @@ class _UserSearchPageState extends State<_UserSearchPage> {
   }
 
   void _submit(String term) {
-    final userList = context.read<UserSearchCubit>();
-    userList.search(term);
+    final searchCubit = context.read<UserSearchCubit>();
+    searchCubit.search(term);
   }
 
   AppBar _buildAppBar(BuildContext context) {
@@ -117,6 +117,10 @@ class _UserSearchPageState extends State<_UserSearchPage> {
     } else if (state is UserSearchDone) {
       return UserListWidget(
         users: state.users,
+        onFavorite: (user, value) {
+          final favoritesCubit = context.read<FavoritesCubit>();
+          favoritesCubit.updateFavorite(user, value);
+        },
         onDetails: (user) => Navigator.push(
           context,
           UserDetailPage.route(user.login),

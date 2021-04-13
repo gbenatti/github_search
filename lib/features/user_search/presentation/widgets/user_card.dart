@@ -5,13 +5,15 @@ class UserCard extends StatelessWidget {
   const UserCard({
     Key key,
     @required this.user,
+    @required this.isFavorite,
     @required this.onDetails,
     @required this.onFavorite,
   }) : super(key: key);
 
   final User user;
+  final bool isFavorite;
   final void Function() onDetails;
-  final void Function() onFavorite;
+  final void Function(User, bool) onFavorite;
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +38,8 @@ class UserCard extends StatelessWidget {
               ],
             ),
             IconButton(
-              icon: Icon(Icons.favorite_border_rounded),
-              onPressed: () {},
+              icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border_rounded),
+              onPressed: () => onFavorite(user, !isFavorite),
             ),
           ],
         ),

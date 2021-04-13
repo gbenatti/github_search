@@ -12,7 +12,7 @@ class FavoriteLocalDataSourceImpl implements FavoriteLocalDataSource {
     try {
       String jsonString = await _loadJson();
       final favorites = _parseFavorites(jsonString);
-      return favorites.map((fav) => fav.toModel());
+      return favorites.map((fav) => fav.toModel()).toList();
     } on Exception {
       return <UserModel>[];
     }
@@ -25,8 +25,7 @@ class FavoriteLocalDataSourceImpl implements FavoriteLocalDataSource {
   }
 
   Iterable<UserDto> _parseFavorites(String jsonString) {
-    List<Map<String, dynamic>> parsed =
-        jsonDecode(jsonString).cast<List<Map<String, dynamic>>>();
+    List parsed = jsonDecode(jsonString);
     return parsed.map((jsonMap) => UserDto.fromJson(jsonMap)).toList();
   }
 
@@ -50,8 +49,8 @@ class FavoriteLocalDataSourceImpl implements FavoriteLocalDataSource {
   }
 
   Future<void> _saveFavorites(List<UserModel> favorites) async {
-    final models = favorites.map((model) => UserDto.fromModel(model));
-    final jsonString = _serializeFavorites(models);
+    final dtos = favorites.map((model) => UserDto.fromModel(model)).toList();
+    final jsonString = _serializeFavorites(dtos);
     await _saveJson(jsonString);
   }
 

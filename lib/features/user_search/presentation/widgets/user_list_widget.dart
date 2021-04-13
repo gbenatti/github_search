@@ -8,7 +8,7 @@ import 'user_card.dart';
 class UserListWidget extends StatelessWidget {
   final List<User> users;
   final Function(User) onDetails;
-  final Function(User) onFavorite;
+  final Function(User, bool) onFavorite;
 
   const UserListWidget({
     Key key,
@@ -30,14 +30,24 @@ class UserListWidget extends StatelessWidget {
             ),
             child: UserCard(
               user: users[index],
+              isFavorite: _isFavorite(context, users[index].login, state),
               onDetails:
                   onDetails != null ? () => onDetails(users[index]) : null,
-              onFavorite:
-                  onFavorite != null ? () => onFavorite(users[index]) : null,
+              onFavorite: onFavorite,
             ),
           ),
         );
       },
     );
+  }
+
+  bool _isFavorite(BuildContext context, String login, FavoritesState state) {
+    if (state is FavoritesLoaded) {
+      final found = state.favorites.firstWhere(
+          (favorite) => favorite.login == login,
+          orElse: () => null);
+      return (found != null);
+    }
+    return false;
   }
 }

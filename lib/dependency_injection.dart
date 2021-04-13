@@ -14,6 +14,7 @@ import 'package:github_search/features/user_detail/domain/usecases/get_user_deta
 import 'package:github_search/features/user_detail/presentation/cubits/user_detail_cubit.dart';
 import 'package:github_search/features/user_search/domain/usecases/load_favorites.dart';
 import 'package:github_search/features/user_search/domain/usecases/search_users.dart';
+import 'package:github_search/features/user_search/domain/usecases/update_favorite.dart';
 import 'package:github_search/features/user_search/presentation/cubits/favorites_cubit.dart';
 import 'package:github_search/features/user_search/presentation/cubits/user_search_cubit.dart';
 
@@ -25,12 +26,13 @@ void init() {
   // Cubits
   sl.registerFactory(() => UserSearchCubit(searchUsers: sl()));
   sl.registerFactory(() => UserDetailCubit(getUserDetails: sl()));
-  sl.registerFactory(() => FavoritesCubit(loader: sl()));
+  sl.registerFactory(() => FavoritesCubit(loader: sl(), updater: sl()));
 
   // Use cases
   sl.registerLazySingleton(() => SearchUsers(sl()));
   sl.registerLazySingleton(() => GetUserDetails(sl()));
   sl.registerLazySingleton(() => LoadFavorites(sl()));
+  sl.registerLazySingleton(() => UpdateFavorite(sl()));
 
   // Repositories
   sl.registerLazySingleton<UserRepository>(
