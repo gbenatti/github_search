@@ -15,5 +15,6 @@ class FavoritesLoaded extends FavoritesState {
   FavoritesLoaded({this.favorites});
 }
 
+class FavoritesUpdating extends FavoritesState {}
 class FavoritesLoadError extends FavoritesState {}
 class FavoritesUpdateError extends FavoritesState {}

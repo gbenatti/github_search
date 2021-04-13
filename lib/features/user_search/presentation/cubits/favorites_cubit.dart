@@ -18,7 +18,10 @@ class FavoritesCubit extends Cubit<FavoritesState> {
     final result = await loader(NoParams());
     result.fold(
       (l) => emit(FavoritesLoadError()),
-      (r) => emit(FavoritesLoaded(favorites: r)),
+      (r) {
+        emit(FavoritesUpdating());
+        emit(FavoritesLoaded(favorites: r));
+      },
     );
   }
 
@@ -26,7 +29,10 @@ class FavoritesCubit extends Cubit<FavoritesState> {
     final result = await updater(Params(user: user, value: value));
     result.fold(
       (l) => emit(FavoritesUpdateError()),
-      (r) => emit(FavoritesLoaded(favorites: r)),
+      (r) {
+        emit(FavoritesUpdating());
+        emit(FavoritesLoaded(favorites: r));
+      },
     );
   }
 }

@@ -32,6 +32,7 @@ void main() {
       act: (c) => c.load(),
       expect: <FavoritesState>[
         FavoritesLoading(),
+        FavoritesUpdating(),
         FavoritesLoaded(),
       ],
       verify: (c) {

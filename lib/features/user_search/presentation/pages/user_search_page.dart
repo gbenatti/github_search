@@ -79,6 +79,12 @@ class _UserSearchPageState extends State<_UserSearchPage> {
     setState(() {
       showingFavorites = !showingFavorites;
     });
+    if (showingFavorites) _loadFavorites(context);
+  }
+
+  void _loadFavorites(BuildContext context) {
+    final favoritesCubit = context.read<FavoritesCubit>();
+    favoritesCubit.load();
   }
 
   @override
@@ -90,25 +96,34 @@ class _UserSearchPageState extends State<_UserSearchPage> {
   }
 
   Widget _buildBody() {
+    return !showingFavorites ? _buildSearchBody() : _buildFavoritesBody();
+  }
+
+  Widget _buildSearchBody() {
     return BlocConsumer<UserSearchCubit, UserSearchState>(
-      listener: (context, state) => _handlePossibleError(state, context),
-      builder: (context, state) => _buildContent(state),
+      listener: (context, state) => _handleSearchPossibleError(state, context),
+      builder: (context, state) => _buildSearchContent(state),
     );
   }
 
-  void _handlePossibleError(UserSearchState state, BuildContext context) {
+  Widget _buildFavoritesBody() {
+    return BlocConsumer<FavoritesCubit, FavoritesState>(
+      listener: (context, state) =>
+          _handleFavoritesPossibleError(state, context),
+      builder: (context, state) => _buildFavoritesContent(state),
+    );
+  }
+
+  void _handleSearchPossibleError(UserSearchState state, BuildContext context) {
     if (state is UserSearchError) {
       Scaffold.of(context).showSnackBar(SnackBar(content: Text(state.message)));
     }
   }
 
-  Widget _buildContent(UserSearchState state) {
+  Widget _buildSearchContent(UserSearchState state) {
     if (state is UserSearchEmpty) {
-      return const DisplayMessage(
-        icon: Icon(
-          Icons.search,
-          size: 64,
-        ),
+      return _showEmptyMessage(
+        icon: Icons.search,
         message: "Nenhum resultado",
         description: "Tente fazer uma busca.",
       );
@@ -126,6 +141,49 @@ class _UserSearchPageState extends State<_UserSearchPage> {
           UserDetailPage.route(user.login),
         ),
       );
+    }
+
+    return Container();
+  }
+
+  DisplayMessage _showEmptyMessage(
+      {IconData icon, String message, String description}) {
+    return DisplayMessage(
+      icon: Icon(
+        icon,
+        size: 64,
+      ),
+      message: message,
+      description: description,
+    );
+  }
+
+  void _handleFavoritesPossibleError(
+      FavoritesState state, BuildContext context) {
+    if (state is FavoritesLoadError) {
+      Scaffold.of(context).showSnackBar(
+          SnackBar(content: Text("Erro carregando os favoritos")));
+    }
+  }
+
+  Widget _buildFavoritesContent(FavoritesState state) {
+    if (state is FavoritesLoading) {
+      return LoadingWidget();
+    }
+    if (state is FavoritesLoaded) {
+      if (state.favorites.isEmpty) {
+        return _showEmptyMessage(
+          icon: Icons.favorite,
+          message: "Nenhum favorito",
+          description: "Tente mostrar seu amor por alguem",
+        );
+      } else {
+        return UserListWidget(
+          users: state.favorites,
+          onDetails: (user) {},
+          onFavorite: (user, value) {},
+        );
+      }
     }
 
     return Container();
