@@ -186,7 +186,7 @@ class _UserSearchPageState extends State<_UserSearchPage> {
           },
           onDetails: (user) => Navigator.push(
             context,
-            UserDetailPage.route(user.login),
+            UserDetailPage.route(user.login, isFavorite: true),
           ),
         );
       }

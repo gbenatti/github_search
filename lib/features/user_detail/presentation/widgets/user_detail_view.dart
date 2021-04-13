@@ -52,7 +52,7 @@ class UserDetailView extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 64.0),
           child: Center(
-              child: user.bio.isNotEmpty
+              child: user.bio?.isNotEmpty ?? false
                   ? _QuoteText(text: user.bio)
                   : Text("Biografia não disponível")),
         ),
@@ -90,7 +90,7 @@ class _UserHeader extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 24.0, top: 16.0),
           child: Text(
-            user.name,
+            user.name ?? "",
             style: TextStyle(
               fontSize: 32,
               fontWeight: FontWeight.w500,
